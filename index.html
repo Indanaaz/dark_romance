@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Kamu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(120deg, #0d0d0d, #1a001a);
+      color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      padding: 20px;
+    }
+    .message {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      transition: opacity 0.5s ease-in-out;
+    }
+    button {
+      background-color: #800020;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #a61a3d;
+    }
+    .fade {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="message" class="message"></div>
+    <button id="nextBtn">Lanjut</button>
+  </div>
+
+  <script>
+    const messages = [
+      "Hei... boleh jujur nggak?",
+      "Aku sering mikir... gimana caranya semesta bisa kasih kamu ke aku?",
+      "Kamu pernah gak sih ngerasa bersyukur banget sama seseorang... yang bahkan hadirnya aja bikin tenang?",
+      "Ya... itu yang aku rasain tiap kali aku mikirin kamu.",
+      "Kamu tuh bukan cuma bagian dari hidupku...",
+      "Kamu alasan kenapa hidup ini kerasa lebih utuh.",
+      "Kalau kamu hilang... aku rasa, aku gak bakal nemuin versi diriku yang kayak sekarang.",
+      "Makanya aku cuma mau tanya satu hal...",
+      "Boleh gak... aku jagain kamu terus?",
+      "Hehe... aku lega banget denger itu. Makasih ya, udah jadi kamu. Tetap jadi kamu, ya... jangan berubah."
+    ];
+
+    const buttonLabels = [
+      "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Jawab", "Akhiri"
+    ];
+
+    const messageDiv = document.getElementById('message');
+    const nextBtn = document.getElementById('nextBtn');
+    let index = 0;
+
+    function showMessage() {
+      messageDiv.classList.add('fade');
+      setTimeout(() => {
+        messageDiv.innerText = messages[index];
+        nextBtn.innerText = buttonLabels[index];
+        messageDiv.classList.remove('fade');
+        index++;
+
+        if (index === messages.length) {
+          nextBtn.style.display = 'none';
+        }
+      }, 300);
+    }
+
+    nextBtn.addEventListener('click', showMessage);
+    showMessage();
+  </script>
+</body>
+</html>
