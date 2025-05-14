@@ -3,196 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pesan Lucu dari Indana untuk Richat</title>
+  <title>Pesan Manis dari Indana</title>
   <style>
     body {
-      background-color: #f5e1f7;
-      color: #6a1b9a;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: #ffeef8;
+      color: #b91c1c;
       text-align: center;
-      overflow: hidden;
+      padding: 40px;
+      overflow-x: hidden;
     }
-
-    h1 {
-      font-size: 2.5em;
-      margin-top: 100px;
-      opacity: 0;
-      animation: fadeIn 1s forwards;
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff0fa;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
     }
-
-    .message {
-      font-size: 1.3em;
-      margin-top: 30px;
-      opacity: 0;
-      animation: fadeIn 1s forwards 1s;
-    }
-
+    .hidden { display: none; }
     .btn {
-      background-color: #ff7f50;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1.2em;
+      background: #f472b6;
       color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      margin: 10px;
+      font-size: 16px;
       cursor: pointer;
-      margin: 20px;
-      border-radius: 5px;
-      transition: transform 0.2s ease, background-color 0.3s;
+      transition: transform 0.2s;
     }
-
-    .btn:hover {
-      background-color: #ff6347;
-      transform: scale(1.1);
-    }
-
-    .btn:active {
-      transform: scale(0.95);
-    }
-
-    .sad-btn {
-      background-color: #ff6347;
-    }
-
-    .sad-btn:hover {
-      background-color: #ff4500;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .angry {
-      animation: shake 0.3s ease-out infinite;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
+    .btn:hover { background: #ec4899; }
+    .shake { animation: shake 0.4s; }
     @keyframes shake {
       0% { transform: translateX(0); }
       25% { transform: translateX(-5px); }
       50% { transform: translateX(5px); }
       75% { transform: translateX(-5px); }
-      100% { transform: translateX(5px); }
+      100% { transform: translateX(0); }
     }
 
-    .emoji {
-      animation: fly 2s infinite;
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
     }
-
-    @keyframes fly {
-      0% { transform: translateY(0); opacity: 1; }
-      50% { transform: translateY(-30px); opacity: 0.5; }
-      100% { transform: translateY(0); opacity: 1; }
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('https://emoji.slack-edge.com/T02FHE90J/heart/04297f7bbf93d78f.png') no-repeat center center;
+      background-size: contain;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
     }
-
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(0.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
+  <audio autoplay loop>
+    <source src="https://example-files.online-convert.com/audio/mp3/example.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung pemutar audio.
+  </audio>
 
-  <h1 id="title">Pesan Lucu dari Indana untuk Richat</h1>
+  <div class="hearts" id="hearts"></div>
 
-  <div class="message" id="message1">
-    <p>Yangg... boleh gak aku curhat bentar?</p>
-    <button class="btn" id="next1">Lanjut</button>
-  </div>
+  <div class="container">
+    <h2>Pesan Manis dari Indana buat sayang Richat 💌</h2>
 
-  <div class="message hidden" id="message2">
-    <p>Kamu pernah gak sih tiba-tiba ngerasa kangen banget... padahal baru aja ngobrol?</p>
-    <button class="btn" id="yes1">Pernah banget 🥹</button>
-    <button class="btn sad-btn" id="no1">Ah lebay 😆</button>
-  </div>
+    <div id="step1">
+      <p>Sayang... boleh gak aku curhat bentar?</p>
+      <button class="btn" onclick="nextStep('step2')">Lanjut</button>
+    </div>
 
-  <div class="message hidden" id="message3">
-    <p>Kalo aku bilang... kamu itu hadiah terindah yang pernah aku dapet. Kamu percaya gak?</p>
-    <button class="btn" id="yes2">Percaya kok 🥹</button>
-    <button class="btn sad-btn" id="no2">Enggak 😬</button>
-  </div>
+    <div id="step2" class="hidden">
+      <p>Kamu pernah gak sih tiba-tiba ngerasa kangen banget... padahal baru aja ngobrol?</p>
+      <button class="btn" onclick="response('step2','yes')">Pernah banget 🥹</button>
+      <button class="btn" id="btn2no" onclick="ngambek('step2', 'btn2no', 'Haha, becanda ya?', 'Iya, tau deh kamu cuma bercanda 🥰', 'step3')">Ah lebay 😆</button>
+    </div>
 
-  <div class="message hidden" id="message4">
-    <p>Jadi... boleh gak aku jagain kamu terus?</p>
-    <button class="btn" id="yes3">Iya dong 🫶</button>
-    <button class="btn sad-btn" id="no3">Enggak 😤</button>
-  </div>
+    <div id="step3" class="hidden">
+      <p>Kalo aku bilang... kamu itu hadiah terindah yang pernah aku dapet. Kamu percaya gak?</p>
+      <button class="btn" onclick="response('step3','yes')">Percaya kok 🥹</button>
+      <button class="btn" id="btn3no" onclick="ngambek('step3', 'btn3no', 'Ya ampun, becanda 😅', 'Iya deh, aku percaya kok! 😘', 'step4')">Enggak 😬</button>
+    </div>
 
-  <div class="message hidden" id="endMessage">
-    <p>Makasih ya, yangg... kamu tuh luar biasa dan selalu bikin aku bahagia! 😍<br>
-    Aku gak bisa berhenti senyum kalau mikirin kamu! 😘</p>
-    <p>- Indana 🖤</p>
+    <div id="step4" class="hidden">
+      <p>Jadi... boleh gak aku jagain kamu terus?</p>
+      <button class="btn" onclick="nextStep('end')">Iya dong 🫶</button>
+      <button class="btn" id="btn4no" onclick="hilang('step4', 'btn4no', 'Iya deh, aku jagain kamu juga 😅', 'Iya deh, aku gak mau pergi kok! 😘', 'end')">Enggak 😤</button>
+    </div>
+
+    <div id="end" class="hidden">
+      <p>Makasih ya, sayang! Kamu itu luar biasa dan selalu bikin aku bahagia! 😍<br><br>
+      Aku gak bisa berhenti senyum kalau mikirin kamu! Aku bakal selalu jagain kamu, jangan khawatir 😘</p>
+    </div>
   </div>
 
   <script>
-    document.getElementById('next1').addEventListener('click', function() {
-      document.getElementById('message1').classList.add('hidden');
-      document.getElementById('message2').classList.remove('hidden');
-    });
+    function nextStep(id) {
+      document.querySelectorAll('.container > div').forEach(div => div.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
 
-    document.getElementById('yes1').addEventListener('click', function() {
-      document.getElementById('message2').classList.add('hidden');
-      document.getElementById('message3').classList.remove('hidden');
-    });
+    function response(step, type) {
+      const div = document.getElementById(step);
+      let msg = '';
+      if(step === 'step2' && type === 'yes') msg = "Hehe, aku juga gitu! Tiba-tiba kamu muncul di kepala aku dan... langsung senyum-senyum sendiri 😋";
+      if(step === 'step3' && type === 'yes') msg = "Yay! Terima kasih, sayang! Kamu tuh luar biasa banget deh 😘";
+      div.innerHTML = `<p>${msg}</p><button class='btn' onclick="nextStep('${step === 'step2' ? 'step3' : 'step4'}')">Lanjut</button>`;
+    }
 
-    document.getElementById('no1').addEventListener('click', function() {
-      this.classList.add('angry');
+    function ngambek(stepId, btnId, newBtnText, newResponse, nextId) {
+      const btn = document.getElementById(btnId);
+      btn.classList.add("shake");
       setTimeout(() => {
-        this.classList.remove('angry');
-        document.getElementById('no1').classList.add('hidden');
-        let newBtn = document.createElement('button');
-        newBtn.classList.add('btn');
-        newBtn.innerText = "Haha, becanda ya? 😅";
-        newBtn.addEventListener('click', function() {
-          document.getElementById('message2').classList.add('hidden');
-          document.getElementById('message3').classList.remove('hidden');
-        });
-        document.getElementById('message2').appendChild(newBtn);
-      }, 1000);
-    });
+        btn.classList.remove("shake");
+        if (!document.getElementById(`fix-${stepId}`)) {
+          const newBtn = document.createElement("button");
+          newBtn.className = "btn";
+          newBtn.id = `fix-${stepId}`;
+          newBtn.textContent = newBtnText;
+          newBtn.onclick = () => {
+            document.getElementById(stepId).innerHTML = `<p>${newResponse}</p><button class='btn' onclick=\"nextStep('${nextId}')\">Lanjut</button>`;
+          };
+          document.getElementById(stepId).appendChild(newBtn);
+        }
+      }, 300);
+    }
 
-    document.getElementById('yes2').addEventListener('click', function() {
-      document.getElementById('message3').classList.add('hidden');
-      document.getElementById('message4').classList.remove('hidden');
-    });
-
-    document.getElementById('no2').addEventListener('click', function() {
-      this.classList.add('angry');
+    function hilang(stepId, btnId, newBtnText, newResponse, nextId) {
+      const btn = document.getElementById(btnId);
+      btn.style.transition = "opacity 0.6s";
+      btn.style.opacity = 0;
       setTimeout(() => {
-        this.classList.remove('angry');
-        document.getElementById('no2').classList.add('hidden');
-        let newBtn = document.createElement('button');
-        newBtn.classList.add('btn');
-        newBtn.innerText = "Yaudah deh, percaya 😅";
-        newBtn.addEventListener('click', function() {
-          document.getElementById('message3').classList.add('hidden');
-          document.getElementById('message4').classList.remove('hidden');
-        });
-        document.getElementById('message3').appendChild(newBtn);
-      }, 1000);
-    });
+        btn.style.display = "none";
+        const newBtn = document.createElement("button");
+        newBtn.className = "btn";
+        newBtn.textContent = newBtnText;
+        newBtn.onclick = () => {
+          document.getElementById(stepId).innerHTML = `<p>${newResponse}</p><button class='btn' onclick=\"nextStep('${nextId}')\">Lanjut</button>`;
+        };
+        document.getElementById(stepId).appendChild(newBtn);
+      }, 600);
+    }
 
-    document.getElementById('yes3').addEventListener('click', function() {
-      document.getElementById('message4').classList.add('hidden');
-      document.getElementById('endMessage').classList.remove('hidden');
-    });
-
-    document.getElementById('no3').addEventListener('click', function() {
-      this.classList.add('angry');
-      setTimeout(() => {
-        this.classList.remove('angry');
-        document.getElementById('no3').classList.add('hidden');
-        let newBtn = document.createElement('button');
-        newBtn.classList.add('btn');
-        newBtn.innerText = "Iya deh 😅";
-        newBtn.addEventListener('click', function() {
-          document.getElementById('message4').classList.add('hidden');
-          document.getElementById('endMessage').classList.remove('hidden');
-        });
-        document.getElementById('message4').appendChild(newBtn);
-      }, 1000);
-    });
+    // Floating hearts animation
+    const heartsContainer = document.getElementById('hearts');
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
   </script>
-
 </body>
 </html>
