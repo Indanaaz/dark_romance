@@ -1,95 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Untuk Kamu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan dari Indana untuk Richat</title>
   <style>
     body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      font-family: 'Playfair Display', serif;
-      background: linear-gradient(120deg, #0d0d0d, #1a001a);
-      color: #f2f2f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
       text-align: center;
+      overflow: hidden;
     }
-    .container {
-      max-width: 600px;
-      padding: 20px;
-    }
-    .message {
-      font-size: 1.6rem;
-      margin-bottom: 2rem;
-      transition: opacity 0.5s ease-in-out;
-    }
-    button {
-      background-color: #800020;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #a61a3d;
-    }
-    .fade {
+
+    h1 {
+      font-size: 2.5em;
+      margin-top: 100px;
       opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    .message {
+      font-size: 1.3em;
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeIn 1s forwards 1s;
+    }
+
+    .btn {
+      background-color: #ff6f61;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      color: white;
+      cursor: pointer;
+      margin: 20px;
+      border-radius: 5px;
+      transition: transform 0.2s ease, background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ff4f3b;
+      transform: scale(1.1);
+    }
+
+    .btn:active {
+      transform: scale(0.95);
+    }
+
+    .sad-btn {
+      background-color: #ff4040;
+    }
+
+    .sad-btn:hover {
+      background-color: #ff2e2e;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .angry {
+      animation: shake 0.3s ease-out infinite;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(5px); }
+    }
+
+    .emoji {
+      animation: fly 2s infinite;
+    }
+
+    @keyframes fly {
+      0% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(-30px); opacity: 0.5; }
+      100% { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="message" class="message"></div>
-    <button id="nextBtn">Lanjut</button>
+
+  <h1 id="title">Pesan dari Indana untuk Richat</h1>
+
+  <div class="message" id="message1">
+    <p>Yangg... boleh gak aku curhat bentar?</p>
+    <button class="btn" id="next1">Lanjut</button>
+  </div>
+
+  <div class="message hidden" id="message2">
+    <p>Kamu pernah gak sih tiba-tiba ngerasa kangen banget... padahal baru aja ngobrol?</p>
+    <button class="btn" id="yes1">Pernah banget 🥹</button>
+    <button class="btn sad-btn" id="no1">Ah lebay 😆</button>
+  </div>
+
+  <div class="message hidden" id="message3">
+    <p>Kalo aku bilang... kamu itu hadiah terbaik yang pernah aku dapet. Kamu percaya gak?</p>
+    <button class="btn" id="yes2">Percaya kok 🥹</button>
+    <button class="btn sad-btn" id="no2">Enggak 😬</button>
+  </div>
+
+  <div class="message hidden" id="message4">
+    <p>Jadi... boleh gak aku jagain kamu terus?</p>
+    <button class="btn" id="yes3">Iya dong 🫶</button>
+    <button class="btn sad-btn" id="no3">Enggak 😤</button>
+  </div>
+
+  <div class="message hidden" id="endMessage">
+    <p>Makasih ya, yangg… udah mau jadi rumah yang paling nyaman buat aku. <br>
+    Kamu bikin aku percaya... rasa bisa selucu dan seserius ini sekaligus.</p>
+    <p>- Indana 🖤</p>
   </div>
 
   <script>
-    const messages = [
-      "Hei... boleh jujur nggak?",
-      "Aku sering mikir... gimana caranya semesta bisa kasih kamu ke aku?",
-      "Kamu pernah gak sih ngerasa bersyukur banget sama seseorang... yang bahkan hadirnya aja bikin tenang?",
-      "Ya... itu yang aku rasain tiap kali aku mikirin kamu.",
-      "Kamu tuh bukan cuma bagian dari hidupku...",
-      "Kamu alasan kenapa hidup ini kerasa lebih utuh.",
-      "Kalau kamu hilang... aku rasa, aku gak bakal nemuin versi diriku yang kayak sekarang.",
-      "Makanya aku cuma mau tanya satu hal...",
-      "Boleh gak... aku jagain kamu terus?",
-      "Hehe... aku lega banget denger itu. Makasih ya, udah jadi kamu. Tetap jadi kamu, ya... jangan berubah."
-    ];
+    document.getElementById('next1').addEventListener('click', function() {
+      document.getElementById('message1').classList.add('hidden');
+      document.getElementById('message2').classList.remove('hidden');
+    });
 
-    const buttonLabels = [
-      "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Lanjut", "Jawab", "Akhiri"
-    ];
+    document.getElementById('yes1').addEventListener('click', function() {
+      document.getElementById('message2').classList.add('hidden');
+      document.getElementById('message3').classList.remove('hidden');
+    });
 
-    const messageDiv = document.getElementById('message');
-    const nextBtn = document.getElementById('nextBtn');
-    let index = 0;
-
-    function showMessage() {
-      messageDiv.classList.add('fade');
+    document.getElementById('no1').addEventListener('click', function() {
+      this.classList.add('angry');
       setTimeout(() => {
-        messageDiv.innerText = messages[index];
-        nextBtn.innerText = buttonLabels[index];
-        messageDiv.classList.remove('fade');
-        index++;
+        this.classList.remove('angry');
+        document.getElementById('no1').classList.add('hidden');
+        let newBtn = document.createElement('button');
+        newBtn.classList.add('btn');
+        newBtn.innerText = "Ya ampun, becanda 😅";
+        newBtn.addEventListener('click', function() {
+          document.getElementById('message2').classList.add('hidden');
+          document.getElementById('message3').classList.remove('hidden');
+        });
+        document.getElementById('message2').appendChild(newBtn);
+      }, 1000);
+    });
 
-        if (index === messages.length) {
-          nextBtn.style.display = 'none';
-        }
-      }, 300);
-    }
+    document.getElementById('yes2').addEventListener('click', function() {
+      document.getElementById('message3').classList.add('hidden');
+      document.getElementById('message4').classList.remove('hidden');
+    });
 
-    nextBtn.addEventListener('click', showMessage);
-    showMessage();
+    document.getElementById('no2').addEventListener('click', function() {
+      this.classList.add('angry');
+      setTimeout(() => {
+        this.classList.remove('angry');
+        document.getElementById('no2').classList.add('hidden');
+        let newBtn = document.createElement('button');
+        newBtn.classList.add('btn');
+        newBtn.innerText = "Yaudah deh percaya";
+        newBtn.addEventListener('click', function() {
+          document.getElementById('message3').classList.add('hidden');
+          document.getElementById('message4').classList.remove('hidden');
+        });
+        document.getElementById('message3').appendChild(newBtn);
+      }, 1000);
+    });
+
+    document.getElementById('yes3').addEventListener('click', function() {
+      document.getElementById('message4').classList.add('hidden');
+      document.getElementById('endMessage').classList.remove('hidden');
+    });
+
+    document.getElementById('no3').addEventListener('click', function() {
+      this.classList.add('angry');
+      setTimeout(() => {
+        this.classList.remove('angry');
+        document.getElementById('no3').classList.add('hidden');
+        let newBtn = document.createElement('button');
+        newBtn.classList.add('btn');
+        newBtn.innerText = "Iya deh 😅";
+        newBtn.addEventListener('click', function() {
+          document.getElementById('message4').classList.add('hidden');
+          document.getElementById('endMessage').classList.remove('hidden');
+        });
+        document.getElementById('message4').appendChild(newBtn);
+      }, 1000);
+    });
   </script>
+
 </body>
 </html>
